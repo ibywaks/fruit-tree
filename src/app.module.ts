@@ -12,7 +12,7 @@ import { TreeModule } from './tree/tree.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'MoradoLuv',
+      password: 'xxxx',
       database: 'fruit-tree',
       entities: [],
       synchronize: true,
