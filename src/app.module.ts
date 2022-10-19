@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TreeModule } from './tree/tree.module';
+import { Tree } from './tree/tree.entity';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { TreeModule } from './tree/tree.module';
       username: 'root',
       password: 'xxxx',
       database: 'fruit-tree',
-      entities: [],
+      entities: [Tree],
       synchronize: true,
     }),
     TreeModule,
