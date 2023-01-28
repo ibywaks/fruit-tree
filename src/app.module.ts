@@ -1,10 +1,13 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
+import cors from 'cors';
+import helmet from 'helmet';
 
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TreeModule } from './tree/tree.module';
 import { Tree } from './tree/tree.entity';
+import { simpleFunc } from './middleware';
 
 @Module({
   imports: [
@@ -23,4 +26,8 @@ import { Tree } from './tree/tree.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(simpleFunc, cors(), helmet()).forRoutes('*');
+  }
+}
